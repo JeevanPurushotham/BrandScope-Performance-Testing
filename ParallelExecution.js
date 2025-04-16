@@ -28,7 +28,7 @@ export default function () {
     const batchRequests = [
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/orders.json?start_date=2025-03-03T04:26:25Z&end_date=2025-04-01T18:29:59Z',
+            url: `${Test1-baseUrl}orders.json?start_date=2025-03-03T04:26:25Z&end_date=2025-04-01T18:29:59Z`,
             params: {
                 headers: commonHeaders,
                 tags: { name: 'GET_Orders' }
@@ -36,7 +36,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/products.json?brand_id=1',
+            url: `${Test1-baseUrl}products.json?brand_id=1`,
             params: {
                 headers: commonHeaders
                 , tags: { name: 'GET_Products' }
@@ -44,7 +44,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/admin/users.json',
+            url: `${Test1-baseUrl}admin/users.json`,
             params: {
                 headers: commonHeaders,
                 tags: { name: 'GET_Users' }
@@ -52,7 +52,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/retailers',
+            url: `${Test1-baseUrl}retailers`,
             params: {
                 headers: commonHeaders,
                 tags: { name: 'GET_Retailers' }
@@ -60,7 +60,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/suppliers',
+            url: `${Test1-baseUrl}suppliers`,
             params: {
                 headers: commonHeaders
                 ,
@@ -98,7 +98,7 @@ export default function () {
     });
 
     // POST request separately (can't go in batch because payload differs)
-    const postUrl = 'https://test-1-erp.brandscope.com/api/releases/2795/products.json';
+    const postUrl = `${Test1-baseUrl}api/releases/2795/products.json`;
     const postHeaders = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

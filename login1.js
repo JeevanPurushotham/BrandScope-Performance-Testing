@@ -3,12 +3,12 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export default function () {
-    const loginUrl = 'https://qa-erp.brandscope.com/users/sign_in';
-    const showroomUrl = 'https://qa-erp.brandscope.com/showroom';
+    const loginUrl = `${QA-baseUrl}sign_in`;
+    const showroomUrl = `${QA-baseUrl}showroom`;
 
     const payload = JSON.stringify({
-        username: 'josh.brandscope1@gmail.com',
-        password: 'josh$123#',
+        username: __ENV.USERNAME,
+        password: __ENV.PASSWORD,
     });
 
     const params = {

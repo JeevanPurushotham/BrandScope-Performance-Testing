@@ -4,10 +4,10 @@ import http from 'k6/http';
 import { check } from 'k6';
 
 export default function () {
-    const url = 'https://qa-erp.brandscope.com/users/sign_in';
+    const url = `${QA-baseUrl}users/sign_in`;
     const payload = JSON.stringify({
-        username: 'josh.brandscope1@gmail.com',
-            password: 'josh$123#',
+            username: __ENV.USERNAME,
+            password: __ENV.PASSWORD,
     });
 
     const params = {
@@ -37,7 +37,7 @@ export default function () {
 
 
     // http.get('https://qa-erp.brandscope.com/brands');
-    let showroom = http.get('https://qa-erp.brandscope.com/products');
+    let showroom = http.get(`${QA-baseUrl}products`);
 
     console.log('Response Status:', showroom.status);
     console.log('Response Body:', showroom.body);  // Log the full response

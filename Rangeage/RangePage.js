@@ -7,7 +7,7 @@ export let options = {
 };
 
 export default function () {
-    const url = 'https://test-1-erp.brandscope.com/api/releases/2297/products.json';
+    const url = `${Test1-baseUrl}api/releases/2297/products.json`;
 
     const headers = {
         'Accept': 'application/json',

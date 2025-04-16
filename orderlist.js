@@ -5,14 +5,14 @@ export const options = {
     stages: [
         { duration: '1m', target: 50 },  // Ramp up to 50 users in 1 minute
         { duration: '2m', target: 100 }, // Increase to 100 users over 2 minutes
-        { duration: '2m', target: 1200 }, // Peak load at 200 users for 2 minutes
+        { duration: '2m', target: 1200 }, // Peak load at 1200 users for 2 minutes
         { duration: '1m', target: 50 },  // Gradual decrease back to 50 users
         { duration: '30s', target: 0 },  // Cool down
     ],
 };
 
     export default function () {
-        const url = 'https://test-1-erp.brandscope.com/orders.json?start_date=2025-03-03T04:26:25Z&end_date=2025-04-01T18:29:59Z';
+        const url = `${Test1-baseUrl}orders.json?start_date=2025-03-03T04:26:25Z&end_date=2025-04-01T18:29:59Z`;
 
         // Set the extracted cookies dynamically (Ensure they're up to date)
         const headers = {

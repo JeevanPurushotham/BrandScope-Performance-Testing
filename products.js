@@ -4,7 +4,7 @@ import { parseHTML } from 'k6/html';
 
 export default function () {
 
-    const url = 'https://test-1-erp.brandscope.com/products.json?brand_id=1';
+    const url = `${Test1-baseUrl}products.json?brand_id=1`;
 
     // Set the extracted cookies dynamically
     const headers = {

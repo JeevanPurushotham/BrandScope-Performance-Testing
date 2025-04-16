@@ -10,7 +10,7 @@ import http from 'k6/http';
     };
 
 export default function () {
-    const url = 'https://qa-erp.brandscope.com/api/releases/3514/products.json';
+    const url = `${QA-baseUrl}api/releases/3514/products.json`;
 
     const headers = {
         'Accept': 'application/json',

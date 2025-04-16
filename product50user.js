@@ -14,7 +14,7 @@ export let options = {
   
 
 export default function () {
-    const url = 'https://qa-erp.brandscope.com/products.json?brand_id=1431';
+    const url = `${QA-baseUrl}products.json?brand_id=1431`;
 
     // Set the extracted cookies dynamically (Ensure they're up to date)
     const headers = {

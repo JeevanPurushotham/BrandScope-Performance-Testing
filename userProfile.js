@@ -11,7 +11,7 @@ export const options = {
 
 export default function () {
 
-    const url = 'https://test-1-erp.brandscope.com/admin/users.json';
+    const url = `${Test1-baseUrl}admin/users.json`;
 
     // Set the extracted cookies dynamically
     const headers = {

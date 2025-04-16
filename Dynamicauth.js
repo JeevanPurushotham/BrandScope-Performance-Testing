@@ -9,7 +9,7 @@ export let options = {
 export default function () {
   // Step 1: Perform Login Request
 
-  const loginPageResponse = http.get('https://qa-erp.brandscope.com/users/sign_in');
+  const loginPageResponse = http.get(`${QA-baseUrl}users/sign_in`);
     const doc = parseHTML(loginPageResponse.body);
       const csrfToken = doc.find("meta[name='csrf-token']").attr('content');
   
@@ -20,10 +20,10 @@ export default function () {
 
 
   let loginRes = http.post(
-    'https://qa-erp.brandscope.com/users/sign_in',
+    `${QA-baseUrl}users/sign_in`,
     JSON.stringify({
-      "user[username]": "josh.brandscope1@gmail.com",
-      "user[password]": "josh$123#"
+      "user[username]": __ENV.USERNAME,
+      "user[password]": __ENV.PASSWORD,
     }),
     {
       headers: {
@@ -50,7 +50,7 @@ export default function () {
   console.log(`Extracted Session Cookie: ${sessionCookie}`);
 
   // Step 2: Use the Cookie for Subsequent Requests
-  let productRes = http.get('https://qa-erp.brandscope.com/products', {
+  let productRes = http.get(`${QA-baseUrl}products`, {
     headers: {
       'Content-Type': 'application/json',
       'X-API-Key': csrfToken,
