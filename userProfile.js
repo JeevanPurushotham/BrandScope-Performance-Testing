@@ -1,3 +1,4 @@
+
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { parseHTML } from 'k6/html';
@@ -10,8 +11,9 @@ export const options = {
 };
 
 export default function () {
+    const Test1_baseUrl = __ENV.Test1_baseUrl; // Replace with your actual base URL
 
-    const url = 'https://test-1-erp.brandscope.com/admin/users.json';
+    const url = `${Test1_baseUrl}admin/users.json`;
 
     // Set the extracted cookies dynamically
     const headers = {
@@ -26,6 +28,7 @@ export default function () {
     });
 
 }
+
 
 
 

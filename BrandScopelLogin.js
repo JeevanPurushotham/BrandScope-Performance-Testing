@@ -1,10 +1,13 @@
 
+
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { parseHTML } from 'k6/html';
 
 export default function () {
-    const loginPageResponse = http.get('https://test-1-erp.brandscope.com/users/sign_in');
+    const Test1_baseUrl = __ENV.Test1_baseUrl;
+
+    const loginPageResponse = http.get(`${Test1_baseUrl}users/sign_in`);
 
     // Extract CSRF token
     const doc = parseHTML(loginPageResponse.body);
@@ -15,11 +18,11 @@ export default function () {
         return;
     }
 
-    const loginUrl = 'https://test-1-erp.brandscope.com/users/sign_in';
+    const loginUrl = `${Test1_baseUrl}users/sign_in`;
     const payload = JSON.stringify({
         user: {
-            username: 'josh.brandscope1@gmail.com',
-            password: 'josh$123#'
+                username: __ENV.USERNAME,
+                password: __ENV.PASSWORD,
         }
     });
 
@@ -68,3 +71,4 @@ export default function () {
     console.log("csrfToken: " + csrfToken);
 
 }
+

@@ -1,4 +1,5 @@
 
+
 import http from 'k6/http';
 
 export let options = {
@@ -7,7 +8,8 @@ export let options = {
 };
 
 export default function () {
-    const url = 'https://test-1-erp.brandscope.com/api/releases/2297/products.json';
+    const Test1_baseUrl = __ENV.Test1_baseUrl;
+    const url = `${Test1_baseUrl}api/releases/2297/products.json`;
 
     const headers = {
         'Accept': 'application/json',
@@ -55,3 +57,4 @@ export default function () {
     // console.log(`Response Status: ${res.status}`);
     console.log(`Response Body: ${res.body}`);
 }
+

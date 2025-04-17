@@ -1,3 +1,4 @@
+
 import http from 'k6/http';
 import { check } from 'k6';
 
@@ -7,9 +8,10 @@ export let options = {
 };
 
 export default function () {
+  const QA_baseUrl = __ENV.QA_baseUrl;
   // Step 1: Perform Login Request
 
-  const loginPageResponse = http.get('https://qa-erp.brandscope.com/users/sign_in');
+  const loginPageResponse = http.get(`${QA_baseUrl}users/sign_in`);
     const doc = parseHTML(loginPageResponse.body);
       const csrfToken = doc.find("meta[name='csrf-token']").attr('content');
   
@@ -20,10 +22,10 @@ export default function () {
 
 
   let loginRes = http.post(
-    'https://qa-erp.brandscope.com/users/sign_in',
+    `${QA_baseUrl}users/sign_in`,
     JSON.stringify({
-      "user[username]": "josh.brandscope1@gmail.com",
-      "user[password]": "josh$123#"
+      "user[username]": __ENV.USERNAME,
+      "user[password]": __ENV.PASSWORD,
     }),
     {
       headers: {
@@ -50,7 +52,7 @@ export default function () {
   console.log(`Extracted Session Cookie: ${sessionCookie}`);
 
   // Step 2: Use the Cookie for Subsequent Requests
-  let productRes = http.get('https://qa-erp.brandscope.com/products', {
+  let productRes = http.get(`${QA_baseUrl}products`, {
     headers: {
       'Content-Type': 'application/json',
       'X-API-Key': csrfToken,
@@ -66,3 +68,4 @@ export default function () {
   console.log(`Products Response: ${productRes.status}`);
   console.log(`product body: ${productRes.body}`);
 }
+

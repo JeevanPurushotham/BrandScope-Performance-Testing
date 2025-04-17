@@ -1,14 +1,16 @@
 
+
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export default function () {
-    const loginUrl = 'https://qa-erp.brandscope.com/users/sign_in';
-    const showroomUrl = 'https://qa-erp.brandscope.com/showroom';
+    const QA_baseUrl = __ENV.QA_baseUrl;
+    const loginUrl = `${QA_baseUrl}sign_in`;
+    const showroomUrl = `${QA_baseUrl}showroom`;
 
     const payload = JSON.stringify({
-        username: 'josh.brandscope1@gmail.com',
-        password: 'josh$123#',
+        username: __ENV.USERNAME,
+        password: __ENV.PASSWORD,
     });
 
     const params = {
@@ -54,3 +56,4 @@ export default function () {
         console.log(`Showroom Response: ${showroomResponse.body}`);
     }
 }
+

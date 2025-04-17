@@ -1,3 +1,4 @@
+
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
@@ -21,6 +22,7 @@ export const options = {
 };
 
 export default function () {
+    const Test1_baseUrl = __ENV.Test1_baseUrl; // Replace with your actual base URL
     const commonHeaders = {
         'Cookie': 'BetterErrors-2.9.1-CSRF-Token=0b62a9f0-6208-4c7c-b454-93b6231a7665; BetterErrors-has-used-console=true; _brandscope_session=43052c879b185d7ac49390f0d844970f',
     };
@@ -28,7 +30,7 @@ export default function () {
     const batchRequests = [
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/orders.json?start_date=2025-03-03T04:26:25Z&end_date=2025-04-01T18:29:59Z',
+            url: `${Test1_baseUrl}orders.json?start_date=2025-03-03T04:26:25Z&end_date=2025-04-01T18:29:59Z`,
             params: {
                 headers: commonHeaders,
                 tags: { name: 'GET_Orders' }
@@ -36,7 +38,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/products.json?brand_id=1',
+            url: `${Test1_baseUrl}products.json?brand_id=1`,
             params: {
                 headers: commonHeaders
                 , tags: { name: 'GET_Products' }
@@ -44,7 +46,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/admin/users.json',
+            url: `${Test1_baseUrl}admin/users.json`,
             params: {
                 headers: commonHeaders,
                 tags: { name: 'GET_Users' }
@@ -52,7 +54,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/retailers',
+            url: `${Test1_baseUrl}retailers`,
             params: {
                 headers: commonHeaders,
                 tags: { name: 'GET_Retailers' }
@@ -60,7 +62,7 @@ export default function () {
         },
         {
             method: 'GET',
-            url: 'https://test-1-erp.brandscope.com/suppliers',
+            url: `${Test1_baseUrl}suppliers`,
             params: {
                 headers: commonHeaders
                 ,
@@ -98,7 +100,7 @@ export default function () {
     });
 
     // POST request separately (can't go in batch because payload differs)
-    const postUrl = 'https://test-1-erp.brandscope.com/api/releases/2795/products.json';
+    const postUrl = `${Test1_baseUrl}api/releases/2795/products.json`;
     const postHeaders = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -153,3 +155,4 @@ export default function () {
 
     sleep(1);
 }
+

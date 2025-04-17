@@ -1,3 +1,4 @@
+
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
@@ -14,7 +15,8 @@ export let options = {
   
 
 export default function () {
-    const url = 'https://qa-erp.brandscope.com/products.json?brand_id=1431';
+    const QA_baseUrl = __ENV.QA_baseUrl; // Replace with your actual base URL
+    const url = `${QA_baseUrl}products.json?brand_id=1431`;
 
     // Set the extracted cookies dynamically (Ensure they're up to date)
     const headers = {
@@ -30,3 +32,4 @@ export default function () {
 
     sleep(1); 
 }
+
